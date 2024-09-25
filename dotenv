@@ -1,0 +1,12 @@
+MONGODB_URI="mongodb://localhost:27017"
+APP_ENV=DEV
+
+# Redis
+ENABLE_REDIS=false
+REDIS_HOST="127.0.0.1"
+REDIS_PORT=6379
+REDIS_TIMEOUT=3600
+
+# Settlement
+SETTLEMENT_PROCESS=16
+SETTLEMENT_URL="http://localhost:8083/settlement"

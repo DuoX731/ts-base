@@ -1,0 +1,28 @@
+{
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "skipLibCheck": true,
+    "outDir": "output/dist/",
+    "paths": {
+      "@common/*": ["common/*"],
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "**/dist/*", "output"]
+}
