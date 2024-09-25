@@ -6,6 +6,9 @@ import { createClient } from 'redis';
 export let redisClient: RedisClientType;
 
 export async function initializeRedis(){
+    if(!config.redis.enable){
+        return;
+    }
     redisClient = createClient({
         socket: {
             host: config.redis.host,
