@@ -1,6 +1,6 @@
 import axios, { Method, AxiosRequestConfig } from 'axios';
 import { streamUtils } from '../util/batchUtil';
-import { config } from '@common/config/config';
+import { config } from '../config/config';
 
 interface SettlementClientConfig {
     url: string;

@@ -1,4 +1,4 @@
-import logger from '@common/util/logger';
+import logger from '../util/logger';
 import type { NextFunction, Request, Response } from 'express';
 
 export function expressLogger(req: Request, res: any, next: NextFunction) {

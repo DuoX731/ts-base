@@ -1,8 +1,8 @@
-import { SendResponseHandler } from '@common/helper/responseHandler';
+import { SendResponseHandler } from '../helper/responseHandler';
 import { config } from '../config/config';
 import type { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { ErrorCode, ErrorCodes } from '@common/types/error';
+import { ErrorCode, ErrorCodes } from '../types/error';
 
 export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
