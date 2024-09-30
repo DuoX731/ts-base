@@ -1,16 +1,19 @@
 interface ErrorInterface {
     description: string;
-    code: number; // HTTP status code
+    code?: number; // HTTP status code
+    error?: string; // Unmanaged error message
 }
 
 export class ErrorCode extends Error {
-    code: number;
     description: string;
+    code: number;
+    error?: string;
 
     constructor(error: ErrorInterface) {
         super(error.description);
         this.code = error.code || 500;
         this.description = error.description;
+        this.error = error.error;
     }
 }
 
@@ -27,4 +30,6 @@ export class SystemErrorCodes {
 
 export class ErrorCodes {
     static readonly InvalidXXX = { code: 400, description: 'Invalid XXX' } as ErrorInterface;
+    static readonly InvalidHash = { code: 400, description: 'Invalid hash' } as ErrorInterface;
+    static readonly InvalidToken = { code: 401, description: 'Invalid token' } as ErrorInterface;
 }

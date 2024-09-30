@@ -1,4 +1,4 @@
-import { config } from '@common/config/config';
+import { config } from '../config/config';
 import mongoose, { Connection, ConnectOptions  } from 'mongoose';
 
 class MongoDBConnectionManager {

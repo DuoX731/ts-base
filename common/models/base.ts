@@ -10,7 +10,6 @@ import type {
     UpdateQuery,
     UpdateWithAggregationPipeline,
 } from 'mongoose';
-import type { PopulateOptions } from './interfaces/populate';
 import type {
     AggregateOptions,
     FilterQuery,
@@ -24,6 +23,7 @@ import type {
     MongooseUpdateQueryOptions,
     QueryWithHelpers,
     UnpackedIntersection,
+    PopulateOptions
 } from './types';
 
 export function BaseFunction<

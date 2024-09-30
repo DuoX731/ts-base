@@ -5,6 +5,7 @@ import 'dotenv/config'
  */
 export const config = {
     environment: process.env.APP_ENV || 'DEV',
+    port: parseInt(process.env.PORT || '3000', 10),
     database: {
         uri: process.env.MONGODB_URI || '',
         default_name: process.env.DEFAULT_DB_NAME || 'default',
@@ -20,5 +21,13 @@ export const config = {
         username: process.env.REDIS_USERNAME || '',
         password: process.env.REDIS_PASSWORD || '',
         timeout: parseInt(process.env.REDIS_TIMEOUT || '3600', 10),
+    },
+    jwt: {
+        secret: process.env.JWT_SECRET || '',
+        expiry: parseInt(process.env.JWT_EXPIRY || '3600', 10),
+        issuer: process.env.JWT_ISSUER || ''
+    },
+    hash: {
+        secret: process.env.HASH_SECRET || 'L3tM3In',
     }
 }

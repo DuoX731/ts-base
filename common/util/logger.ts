@@ -1,9 +1,10 @@
-import { config } from '@common/config/config';
+import { config } from '../config/config';
 import chalk from 'chalk';
+import { getDateTime } from './daysjs';
 
 const ENV = config.environment;
 
-const getTimeStamp = (): string => new Date().toISOString();
+const getTimeStamp = (): string => getDateTime()
 
 const colors = {
     log: chalk.green,
