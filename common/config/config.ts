@@ -5,6 +5,7 @@ import 'dotenv/config'
  */
 export const config = {
     environment: process.env.APP_ENV || 'DEV',
+    port: parseInt(process.env.PORT || '3000', 10),
     database: {
         uri: process.env.MONGODB_URI || '',
         default_name: process.env.DEFAULT_DB_NAME || 'default',

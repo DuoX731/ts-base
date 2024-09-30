@@ -1,9 +1,10 @@
 import { config } from '@common/config/config';
 import chalk from 'chalk';
+import moment from 'moment-timezone';
 
 const ENV = config.environment;
 
-const getTimeStamp = (): string => new Date().toISOString();
+const getTimeStamp = (): string => moment.tz('Asia/Singapore').format('YYYY-MM-DD HH:mm:ss');
 
 const colors = {
     log: chalk.green,
