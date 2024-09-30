@@ -1,6 +1,8 @@
+import { SendResponseHandler } from '@common/helper/responseHandler';
 import { config } from '../config/config';
 import type { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import { ErrorCode, ErrorCodes } from '@common/types/error';
 
 export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
@@ -15,7 +17,7 @@ export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
         }
 
         if (typeof decoded !== 'string' && decoded?.iss === config.jwt.issuer) {
-            return res.status(401).json({ error: '', message: 'Invalid Token'});
+            return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidToken));
         }
 
         /**
@@ -33,7 +35,7 @@ export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
 
 export const verifyJWT = (_req: Request, res: Response, next: NextFunction) => {
     if(!res.locals.jwt) {
-        return res.status(401).json({ error: '', message: 'Invalid Token'});
+        return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidToken));
     }
     next();
 };

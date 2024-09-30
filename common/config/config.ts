@@ -26,4 +26,7 @@ export const config = {
         expiry: parseInt(process.env.JWT_EXPIRY || '3600', 10),
         issuer: process.env.JWT_ISSUER || ''
     },
+    hash: {
+        secret: process.env.HASH_SECRET || 'L3tM3In',
+    }
 }

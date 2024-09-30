@@ -5,8 +5,8 @@ interface ErrorInterface {
 }
 
 export class ErrorCode extends Error {
-    code: number;
     description: string;
+    code: number;
     error?: string;
 
     constructor(error: ErrorInterface) {
@@ -30,4 +30,6 @@ export class SystemErrorCodes {
 
 export class ErrorCodes {
     static readonly InvalidXXX = { code: 400, description: 'Invalid XXX' } as ErrorInterface;
+    static readonly InvalidHash = { code: 400, description: 'Invalid hash' } as ErrorInterface;
+    static readonly InvalidToken = { code: 401, description: 'Invalid token' } as ErrorInterface;
 }
