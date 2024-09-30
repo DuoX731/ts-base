@@ -1,16 +1,19 @@
 interface ErrorInterface {
     description: string;
-    code: number; // HTTP status code
+    code?: number; // HTTP status code
+    error?: string; // Unmanaged error message
 }
 
 export class ErrorCode extends Error {
     code: number;
     description: string;
+    error?: string;
 
     constructor(error: ErrorInterface) {
         super(error.description);
         this.code = error.code || 500;
         this.description = error.description;
+        this.error = error.error;
     }
 }
 

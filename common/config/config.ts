@@ -20,5 +20,10 @@ export const config = {
         username: process.env.REDIS_USERNAME || '',
         password: process.env.REDIS_PASSWORD || '',
         timeout: parseInt(process.env.REDIS_TIMEOUT || '3600', 10),
-    }
+    },
+    jwt: {
+        secret: process.env.JWT_SECRET || '',
+        expiry: parseInt(process.env.JWT_EXPIRY || '3600', 10),
+        issuer: process.env.JWT_ISSUER || ''
+    },
 }
