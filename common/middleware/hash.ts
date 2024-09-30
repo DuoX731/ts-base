@@ -1,9 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
-import moment from 'moment';
 import md5 from 'md5';
 import { config } from '../config/config';
 import { ErrorCode, ErrorCodes } from '../types/error';
 import { SendResponseHandler } from '../helper/responseHandler';
+import dayjs from 'dayjs';
 
 export const validateHash = (req: Request, res: Response, next: NextFunction) => {
     const nonce = req.header('nonce');
@@ -12,7 +12,7 @@ export const validateHash = (req: Request, res: Response, next: NextFunction) =>
         return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidHash));
     }
 
-    const diff = moment().diff(moment(nonce), 'seconds');
+    const diff = dayjs().diff(dayjs(parseInt(nonce)), 'seconds');
     if(diff > 30){
         return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidHash));
     }

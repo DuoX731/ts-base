@@ -1,10 +1,10 @@
 import { config } from '../config/config';
 import chalk from 'chalk';
-import moment from 'moment-timezone';
+import { getDateTime } from './daysjs';
 
 const ENV = config.environment;
 
-const getTimeStamp = (): string => moment.tz('Asia/Singapore').format('YYYY-MM-DD HH:mm:ss');
+const getTimeStamp = (): string => getDateTime()
 
 const colors = {
     log: chalk.green,
