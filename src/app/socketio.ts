@@ -1,5 +1,6 @@
 import { socketLogger } from "@common/middleware/expressLogger";
 import { validateSocketConnection } from "@common/middleware/hash";
+import { extractSocketJWT } from "@common/middleware/jwt";
 import { Server } from "socket.io";
 
 /**
@@ -21,6 +22,7 @@ export function createSocket(httpServer: any) {
     });
 
     io.use(validateSocketConnection);
+    io.use(extractSocketJWT);
     io.use(socketLogger);
 
     return io;
