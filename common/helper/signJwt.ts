@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { config } from '../config/config';
 import { ErrorCode } from '../types/error';
 
-const signJwt = async (payload: any): Promise<string> => {
+export const signJwt = async (payload: any): Promise<string> => {
     return new Promise((resolve, reject) => {
         jwt.sign(
             payload,
