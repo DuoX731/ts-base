@@ -15,12 +15,13 @@ export function createSocket(httpServer: any) {
     const io = new Server(httpServer, {
         cors: {
             origin: '*',
-            allowedHeaders: ['Content-Type', 'Authorization', 'nonce']
+            allowedHeaders: ['Content-Type', 'Authorization', 'nonce'],
+            credentials: true
         }
     });
 
-    io.use(socketLogger);
     io.use(validateSocketConnection);
+    io.use(socketLogger);
 
     return io;
 }
