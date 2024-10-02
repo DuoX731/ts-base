@@ -1,8 +1,11 @@
+import { initializeRedis } from '@common/database/redis';
 import { expressLogger } from '@common/middleware/expressLogger';
 import { extractJWT } from '@common/middleware/jwt';
+import { expressRateLimiter } from '@common/middleware/rateLimiter';
 import bodyParser from 'body-parser';
 import express from 'express';
 
+initializeRedis();
 export const app = express();
 
 app.use(bodyParser.json({ limit: '5mb' }));
@@ -16,5 +19,6 @@ app.use((_, res, next) => {
     next();
 });
 
+app.use(expressRateLimiter());
 app.use(extractJWT);
 app.use(expressLogger);

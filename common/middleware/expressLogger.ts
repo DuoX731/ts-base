@@ -1,10 +1,10 @@
 import { ExtendedError, Socket } from 'socket.io';
 import logger from '../util/logger';
-import type { NextFunction, Request } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 const uniqueId = () => Math.random().toString(36).substring(7);
 
-export function expressLogger(req: Request, res: any, next: NextFunction) {
+export function expressLogger(req: Request, res: Response & { send: any }, next: NextFunction) {
     // Generate a unique id to track the request
     const id = uniqueId();
     logger.log(`${id} Req: ${req.method} ${req.originalUrl}, Body: ${JSON.stringify(req.body)}`);
@@ -18,7 +18,7 @@ export function expressLogger(req: Request, res: any, next: NextFunction) {
     next();
 }
 
-export function socketLogger(socket: any, next: (err?: ExtendedError) => void) {
+export function socketLogger(socket: Socket & { emit: any }, next: (err?: ExtendedError) => void) {
     const id = uniqueId();
 
     logger.log(`${id} Socket connection opened: ${socket.handshake.address}`)

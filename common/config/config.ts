@@ -29,5 +29,10 @@ export const config = {
     },
     hash: {
         secret: process.env.HASH_SECRET || 'L3tM3In',
+    },
+    ratelimiter: {
+        enable: process.env.ENABLE_RATELIMITER === 'true',
+        limit: parseInt(process.env.RATELIMITER_LIMIT || '100', 10),
+        window: parseInt(process.env.RATELIMITER_WINDOW || '60000', 10),
     }
 }
