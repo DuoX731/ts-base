@@ -5,16 +5,16 @@ import database from "../database/connection"
  * transactionWrapper(User.find({}));
  * transactionWrapper(User.create({}));
  */
-export const transactionWrapper = async (operation: any) => {
+export const transactionWrapper = async (operation: Promise<any>[] | Promise<any>) => {
     const connection = database.getConnection();
     if(!connection) {
-        return await operation();
+        return Array.isArray(operation) ? await Promise.all(operation) : await operation;
     }
     const session = await connection.startSession();
 
     try {
         await session.withTransaction(async () => {
-            await operation();
+            return Array.isArray(operation) ? await Promise.all(operation) : await operation;
         });
 
         await session.commitTransaction();
