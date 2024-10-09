@@ -1,14 +1,12 @@
-import logger from "@common/util/logger";
+import { initializeRedis } from "@common/database/redis";
 
-// import { User } from "./common/models/collection";
+initializeRedis();
 
-logger.log("This is a log message");
-logger.info("This is an info message");
-logger.error("This is an error message");
-logger.warn("This is a warning message");
-logger.debug("This is a debug message");
-// setTimeout(() => {
-//     User.save({ name: 'test' })
-// }, 4000)
-
-logger.log("This is a log message", "lol");
+/**
+ * To only use ts base without express
+ * 1. npm uninstall express @types/express express-rate-limit rate-limit-redis body-parser @types/body-parser http 
+ * 2. Delete files below:
+ * - src/app/
+ * - common/middleware/
+ * - common/helper/responseHandler.ts
+ */
