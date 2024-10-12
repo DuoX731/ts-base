@@ -1,5 +1,5 @@
 import { config } from '../config/config';
-import type { RedisClientType } from '@redis/client';
+import type { RedisClientType } from 'redis';
 import { createClient } from 'redis';
 
 
