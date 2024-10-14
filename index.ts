@@ -4,7 +4,7 @@ initializeRedis();
 
 /**
  * To only use ts base without express
- * 1. npm uninstall express @types/express express-rate-limit rate-limit-redis body-parser @types/body-parser http 
+ * 1. npm uninstall express @types/express express-rate-limit rate-limit-redis body-parser @types/body-parser http socket.io
  * 2. Delete files below:
  * - src/app/
  * - common/middleware/

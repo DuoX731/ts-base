@@ -81,23 +81,33 @@ export class RedisService {
         }
     }
 
+    /**
+     * https://redis.io/docs/latest/commands/json.set/
+     */
     static async jsonSet(
         key: string,
         path: string,
         value: RedisJSON,
         options?: {
             ttl?: number;
+            XX?: boolean;
         },
     ) {
         if (!RedisService.isRedisInitialized(redisClient)) {
             logger.warn('Redis is not enabled. Please check configuration to enable.');
             return false;
         }
-
         try {
-            await redisClient.json.set(key, path, value);
-            if (options?.ttl) {
-                await redisClient.expire(key, options.ttl);
+            let { ttl, XX = false } = options ?? {};
+
+            if (XX) {
+                await redisClient.json.set(key, path, value, { XX });
+            } else {
+                await redisClient.json.set(key, path, value);
+            }
+
+            if (ttl) {
+                await redisClient.expire(key, ttl);
             }
 
             return true;
