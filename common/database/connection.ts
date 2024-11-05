@@ -1,3 +1,4 @@
+import logger from '../util/logger';
 import { config } from '../config/config';
 import mongoose, { Connection, ConnectOptions  } from 'mongoose';
 
@@ -22,46 +23,40 @@ class MongoDBConnectionManager {
         const connection = mongoose.createConnection(uri, customOptions);
 
         connection.once('open', () => {
-            console.log(`Mongoose connected to ${uri}`);
+            logger.log(`Mongoose connected to ${uri}`);
         });
 
         connection.on('error', (err) => {
-            console.error(`Mongoose connection error: ${err}`);
+            logger.error(`Mongoose connection error: ${err}`);
         });
 
         connection.on('disconnected', () => {
-            console.error('Mongoose disconnected');
+            logger.error('Mongoose disconnected');
         });
 
         connection.on('reconnected', () => {
-            console.log('Mongoose reconnected');
+            logger.log('Mongoose reconnected');
         });
 
         connection.on('close', () => {
-            console.error('Mongoose connection closed');
+            logger.error('Mongoose connection closed');
         });
 
         return connection;
     }
 
-    connect(): void {
+    connect(dbName: string = this.defaultDbName): Connection {
         try {
-            this.connections[this.defaultDbName] = this.createConnection(this.defaultDbUrl, {
-                replicaSet: config.database.default_name,
-            });
+            this.connections[dbName] = this.createConnection(this.defaultDbUrl);
+            return this.connections[dbName];
         } catch (error) {
             console.error('Failed to initialize DB connections:', error);
             throw error;
         }
     }
 
-    async disconnect(): Promise<void> {
-        try {
-            await mongoose.disconnect();
-            console.log('Mongoose connections closed');
-        } catch (error) {
-            console.error('Error closing Mongoose connections:', error);
-        }
+    disconnect(): Promise<void> {
+        return mongoose.connection.close();
     }
 
     getConnection(key: string = this.defaultDbName): Connection | undefined {
