@@ -1,5 +1,4 @@
-import type { ObjectId } from 'mongodb';
-import type { CountOptions, DeleteOptions, UpdateOptions } from 'mongoose/node_modules/mongodb';
+import type { ObjectId, CountOptions, DeleteOptions, UpdateOptions } from 'mongodb';
 import type {
     AggregateOptions as MongooseAggregateOptions,
     AnyKeys,
