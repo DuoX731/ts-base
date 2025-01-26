@@ -1,0 +1,1 @@
+export type NonEmpty<T> = T extends null | undefined | '' | [] | Record<string, never> ? never : T;
