@@ -4,7 +4,7 @@ import { config } from '../config/config';
 import { ErrorCode, ErrorCodes } from '../types/error';
 import { SendResponseHandler } from '../helper/responseHandler';
 import dayjs from 'dayjs';
-import { ExtendedError, Socket } from 'socket.io';
+import type { ExtendedError, Socket } from 'socket.io';
 
 export const validateHash = (req: Request, res: Response, next: NextFunction) => {
     const nonce = req.header('nonce');
@@ -13,12 +13,12 @@ export const validateHash = (req: Request, res: Response, next: NextFunction) =>
         return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidHash));
     }
 
-    const diff = dayjs().diff(dayjs(parseInt(nonce)), 'seconds');
+    const diff = dayjs().diff(dayjs(Number.parseInt(nonce)), 'seconds');
     if(diff > 30){
         return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidHash));
     }
 
-    if(!verifyHash(req.body, parseInt(nonce))){
+    if(!verifyHash(req.body, Number.parseInt(nonce))){
         return SendResponseHandler(res, new ErrorCode(ErrorCodes.InvalidHash));
     }
 
@@ -31,7 +31,7 @@ export const validateSocketConnection = (socket: Socket, next: (err?: ExtendedEr
         return next(new ErrorCode(ErrorCodes.InvalidHash));
     }
 
-    const diff = dayjs().diff(dayjs(parseInt(nonce as string)), 'seconds');
+    const diff = dayjs().diff(dayjs(Number.parseInt(nonce as string)), 'seconds');
     if(diff > 30){
         return next(new ErrorCode(ErrorCodes.InvalidHash));
     }

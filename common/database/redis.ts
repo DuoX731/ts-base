@@ -1,3 +1,4 @@
+import logger from '@common/util/logger';
 import { config } from '../config/config';
 import type { RedisClientType } from 'redis';
 import { createClient } from 'redis';
@@ -20,7 +21,7 @@ export async function initializeRedis(){
 
     await redisClient.connect()
     .then(() => {
-        console.log('Redis connected');
+        logger.log('Redis connected');
         // Any other initialization
     })
 }

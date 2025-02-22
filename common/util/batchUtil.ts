@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import { Stream } from 'stream';
+import EventEmitter from 'node:events';
+import type { Stream } from 'node:stream';
 
 type StreamData = Record<string, any>;
 

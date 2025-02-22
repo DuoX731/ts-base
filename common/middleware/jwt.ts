@@ -1,9 +1,9 @@
 import { SendResponseHandler } from '../helper/responseHandler';
 import { config } from '../config/config';
 import type { NextFunction, Request, Response } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt, { type JwtPayload } from 'jsonwebtoken';
 import { ErrorCode, ErrorCodes } from '../types/error';
-import { ExtendedError, Socket } from 'socket.io';
+import type { ExtendedError, Socket } from 'socket.io';
 
 export const extractJWT = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;

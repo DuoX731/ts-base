@@ -1,4 +1,4 @@
-import axios, { Method, AxiosRequestConfig } from 'axios';
+import axios, { type Method, type AxiosRequestConfig } from 'axios';
 import { streamUtils } from '../util/batchUtil';
 import { config } from '../config/config';
 

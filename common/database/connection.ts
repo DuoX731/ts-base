@@ -1,6 +1,6 @@
 import logger from '../util/logger';
 import { config } from '../config/config';
-import mongoose, { Connection, ConnectOptions  } from 'mongoose';
+import mongoose, { type Connection, type ConnectOptions  } from 'mongoose';
 
 class MongoDBConnectionManager {
     private connections: { [key: string]: Connection } = {};

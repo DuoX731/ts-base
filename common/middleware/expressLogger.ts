@@ -1,4 +1,4 @@
-import { ExtendedError, Socket } from 'socket.io';
+import type { ExtendedError, Socket } from 'socket.io';
 import logger from '../util/logger';
 import type { NextFunction, Request, Response } from 'express';
 
@@ -29,7 +29,7 @@ export function expressLogger(req: Request, res: Response & { send: any }, next:
     logger.log(`${id} Req: ${req.method} ${req.originalUrl}, ${reqData}`);
 
     const originalSendFunc = res.send.bind(res);
-    res.send = function (body: any) {
+    res.send = (body: any) => {
         logger.log(`${id} Res: ${req.method} ${req.originalUrl}, Status: ${res.statusCode}, Body: ${JSON.stringify(body)}`);
         originalSendFunc(body);
     }
@@ -46,7 +46,7 @@ export function socketLogger(socket: Socket & { emit: any }, next: (err?: Extend
     });
 
     const originalEmit = socket.emit.bind(socket);
-    socket.emit = function (event: string, ...args: any[]) {
+    socket.emit = (event: string, ...args: any[]) => {
         logger.log(`${id} Socket: ${socket.id}, Event: ${event}, Args: ${JSON.stringify(args)}`);
         originalEmit(event, ...args);
     }
