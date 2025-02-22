@@ -8,6 +8,7 @@ import type {
     QueryOptions,
     UpdateQuery,
     UpdateWithAggregationPipeline,
+    Aggregate,
 } from 'mongoose';
 import type {
     AggregateOptions,
@@ -22,7 +23,7 @@ import type {
     MongooseUpdateQueryOptions,
     QueryWithHelpers,
     UnpackedIntersection,
-    PopulateOptions
+    PopulateOptions,
 } from './types';
 
 export function BaseFunction<
@@ -45,7 +46,10 @@ export function BaseFunction<
             ? 5000
             : Number(process.env.MAX_TIME_MS_TIMEOUT);
 
-        static aggregate(aggregate: PipelineStage[], options: AggregateOptions = {}) {
+        static aggregate<ResultDoc = any>(
+            aggregate: PipelineStage[],
+            options: AggregateOptions = {},
+        ): Aggregate<Array<ResultDoc>> {
             let { allowDisk: allowDiskUse = true, isSecondary = false, maxTimeOut = 60000 } = options;
 
             let queryOptions: MongooseAggregateOptions = {
@@ -53,7 +57,7 @@ export function BaseFunction<
                 allowDiskUse,
             };
 
-            let query = this.collection.aggregate(aggregate, queryOptions);
+            let query = this.collection.aggregate<ResultDoc>(aggregate, queryOptions);
 
             if (isSecondary) {
                 query.read('secondaryPreferred');
@@ -485,7 +489,6 @@ export function BaseFunction<
             | Array<MergeType<ResultDoc, PopulatePaths>>
             | ResultDoc
             | MergeType<ResultDoc, PopulatePaths> {
-
             return this.collection.populate(docs, populate) as
                 | Array<ResultDoc>
                 | Array<MergeType<ResultDoc, PopulatePaths>>

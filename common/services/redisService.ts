@@ -1,8 +1,8 @@
-import { RedisClientType } from "redis";
+import type { RedisClientType } from "redis";
 import { redisClient } from "../database/redis";
 import logger from "../util/logger";
 import type { RedisJSON } from '@redis/json/dist/commands';
-import { ConvertToRedisJson, ConvertToString, CustomRedisJsonGetOptions, RedisJsonGetOptions } from "../types/redis";
+import type { ConvertToRedisJson, ConvertToString, CustomRedisJsonGetOptions, RedisJsonGetOptions } from "../types/redis";
 
 export class RedisService {
     static async hSet(key: string, value: Record<string, string | number>, ttl?: number): Promise<boolean> {

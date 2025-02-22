@@ -1,0 +1,72 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.5.0/schema.json",
+    "organizeImports": {
+        "enabled": true
+    },
+    "files": {
+        "ignore": ["dist/*"],
+        "ignoreUnknown": true
+    },
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true,
+        "defaultBranch": "dev"
+    },
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 120,
+        "lineEnding": "lf"
+    },
+    "javascript": {
+        "formatter": {
+            "enabled": true,
+            "quoteStyle": "single",
+            "semicolons": "always"
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": true,
+            "complexity": {
+                "noStaticOnlyClass": "off",
+                "noThisInStatic": "off",
+                "noForEach": "off",
+                "useArrowFunction": "warn",
+                "useLiteralKeys": "warn",
+                "noUselessThisAlias": "off",
+                "noBannedTypes": "off"
+            },
+            "correctness": {
+                "noUnusedVariables": "warn",
+                "noUnusedImports": "warn"
+            },
+            "style": {
+                "useConst": "off",
+                "useBlockStatements": "warn",
+                "noInferrableTypes": "off",
+                "noUselessElse": "warn",
+                "useTemplate": "warn",
+                "noParameterAssign": "off",
+                "noVar": "warn",
+                "useExponentiationOperator": "off",
+                "noNonNullAssertion": "warn"
+            },
+            "suspicious": {
+                "noExplicitAny": "warn",
+                "noGlobalIsNan": "off",
+                "noDoubleEquals": "off",
+                "noPrototypeBuiltins": "off",
+                "noThenProperty": "off"
+            },
+            "performance": {
+                "noDelete": "off",
+                "noAccumulatingSpread": "off"
+            }
+        }
+    }
+}

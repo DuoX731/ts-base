@@ -2,7 +2,7 @@ import { config } from '@common/config/config';
 import { app } from './src/app/express';
 import { createServer } from 'http';
 import { createSocket } from 'src/app/socketio';
-import { Socket } from 'socket.io';
+import type { Socket } from 'socket.io';
 
 const port = config.port || 3000;
 const httpServer = createServer(app);

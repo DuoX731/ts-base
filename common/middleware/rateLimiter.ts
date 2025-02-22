@@ -1,4 +1,4 @@
-import { Options, rateLimit } from 'express-rate-limit'
+import { type Options, rateLimit } from 'express-rate-limit'
 import type { NextFunction, Request, Response } from 'express';
 import { config } from '../config/config';
 import RedisStore from 'rate-limit-redis';
@@ -6,7 +6,7 @@ import { redisClient } from '@common/database/redis';
 
 const redisStore = (customPrefix?: string) => new RedisStore({
     sendCommand: (...args) => redisClient.sendCommand(args),
-    prefix: 'rate-limit/' + customPrefix,
+    prefix: `rate-limit/${customPrefix}`,
 });
 
 // Base rate limiter

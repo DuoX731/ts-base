@@ -1,4 +1,4 @@
-import { NonEmpty } from "../types/types";
+import type { NonEmpty } from "../types/types";
 
 export function isDefined<T>(obj: T | undefined | null): obj is T {
     return obj !== undefined && obj !== null;

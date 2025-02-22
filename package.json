@@ -1,39 +1,43 @@
 {
-  "name": "ts-base",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon ./index.ts",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@types/express": "^5.0.0",
-    "@types/jsonwebtoken": "^9.0.7",
-    "@types/md5": "^2.3.5",
-    "@types/node": "^22.5.5",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.6.2"
-  },
-  "dependencies": {
-    "axios": "^1.7.7",
-    "body-parser": "^1.20.3",
-    "chalk": "^4.1.2",
-    "dayjs": "^1.11.13",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "express-rate-limit": "^7.4.0",
-    "http": "^0.0.1-security",
-    "jsonwebtoken": "^9.0.2",
-    "md5": "^2.3.0",
-    "mongodb": "^6.9.0",
-    "mongoose": "^8.6.3",
-    "rate-limit-redis": "^4.2.0",
-    "redis": "^4.7.0",
-    "socket.io": "^4.8.0",
-    "tsc-alias": "^1.8.10"
-  }
+	"name": "ts-base",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon ./index.ts",
+		"build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "husky",
+		"lint:fix": "npx biome check --write --diagnostic-level=error --staged --files-ignore-unknown=true --no-errors-on-unmatched"
+	},
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/express": "^5.0.0",
+		"@types/jsonwebtoken": "^9.0.7",
+		"@types/md5": "^2.3.5",
+		"@types/node": "^22.5.5",
+		"husky": "^9.1.7",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.6.2"
+	},
+	"dependencies": {
+		"axios": "^1.7.7",
+		"body-parser": "^1.20.3",
+		"chalk": "^4.1.2",
+		"dayjs": "^1.11.13",
+		"dotenv": "^16.4.5",
+		"express": "^4.21.0",
+		"express-rate-limit": "^7.4.0",
+		"http": "^0.0.1-security",
+		"jsonwebtoken": "^9.0.2",
+		"md5": "^2.3.0",
+		"mongodb": "^6.9.0",
+		"mongoose": "^8.6.3",
+		"rate-limit-redis": "^4.2.0",
+		"redis": "^4.7.0",
+		"socket.io": "^4.8.0",
+		"tsc-alias": "^1.8.10"
+	}
 }
